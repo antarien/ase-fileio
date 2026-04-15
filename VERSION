@@ -1,0 +1,29 @@
+# ==============================================================================
+# ASE - Antares Simulation Engine
+# Version Registry (SSOT - Single Source of Truth)
+# ==============================================================================
+#
+# VERSION FORMAT: MM.mm.pp.BBBBB (e.g., 00.02.14.00127)
+#   MM    = MAJOR (manual, 00 until 1.0 release)
+#   mm    = MINOR (commits / 50)
+#   pp    = PATCH (commits % 50)
+#   BBBBB = BUILD (total commits)
+#
+# FORMAT per Component:
+#   ASE_{ABBR}=00.02.14.00127
+#   ASE_{ABBR}_NAME=Full Name
+#   ASE_{ABBR}_DESC=Short description
+#   ASE_{ABBR}_LAYER=0-5
+#   ASE_{ABBR}_STATUS=stub|poc|init|core|feat|refine|alpha|beta|stable
+#   ASE_{ABBR}_CREATED=YYYY-MM-DD
+#   ASE_{ABBR}_UPDATED=YYYY-MM-DD
+#
+# ==============================================================================
+
+ASE_FILEIO=00.00.01.00001
+ASE_FILEIO_NAME=File I/O
+ASE_FILEIO_DESC=Text file reading for non-ECS code (config, version files, manifests)
+ASE_FILEIO_LAYER=0
+ASE_FILEIO_STATUS=stub
+ASE_FILEIO_CREATED=2026-04-13
+ASE_FILEIO_UPDATED=2026-04-13
