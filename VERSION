@@ -39,10 +39,10 @@
 #   stable = Production ready (set manually)
 #
 # ==============================================================================
-ASE_FILEIO=00.00.01.00001
+ASE_FILEIO=00.00.02.00002
 ASE_FILEIO_NAME=ASE Fileio
 ASE_FILEIO_DESC=
 ASE_FILEIO_LAYER=0
 ASE_FILEIO_STATUS=seed
 ASE_FILEIO_CREATED=2026-04-15
-ASE_FILEIO_UPDATED=2026-04-15
+ASE_FILEIO_UPDATED=2026-04-16
