@@ -48,10 +48,27 @@ message(STATUS "Configuring ${PROJECT_NAME} v${PROJECT_VERSION}")
 
 #[[
 HEADER-ONLY LIBRARY
-Plain text reading for non-ECS code. Internally wraps std::ifstream.
+Dateizugriff fuer Nicht-ECS-Code, seit dem 2026-08-22 durchgaengig auf POSIX gebaut
+(open/read/write, opendir/readdir, stat/mkdir/unlink). Vorher lagen Lese- und Schreibseite
+auf genau den Bibliotheksteilen, als deren Ersatz dieses Modul in den Regeltexten steht —
+eine Kopplung, die ein Wrapper verdeckt statt sie aufzuloesen.
 ]]
 add_library(${PROJECT_NAME} INTERFACE
+    #[[ Leseseite. file_exists prueft eine REGULAERE Datei; die weitere Frage (jeder
+        Eintrag) heisst path_exists und steht in path.hpp. ]]
     include/ase/fileio/text_reader.hpp
+    #[[ Die Schreibseite, 2026-08-20. Gemessen vor dem Bau: acht Ausgabestrom-Stellen im
+        Baum (codegen 4, convert 3, log 1), ALLE acht Text mit Truncation — kein app, kein
+        binary. Deshalb genau eine Funktion und keine Formauswahl. ]]
+    include/ase/fileio/text_writer.hpp
+    #[[ Verzeichnisseite, 2026-08-22. Form von ihrem Verbraucher erhoben
+        (core/ase-log, prune_log_dir): Name, Aenderungszeit und is_regular je Eintrag,
+        flach, ohne Filter — und ein idempotentes remove_file. ]]
+    include/ase/fileio/directory.hpp
+    #[[ Pfadseite, 2026-08-22. Die vier Funktionen, die der Baum wirklich ruft
+        (path_exists 15, create_directories 7, parent_of 2, is_directory 1). Die vier
+        ohne jeden Rufer sind bewusst nicht mitgewandert. ]]
+    include/ase/fileio/path.hpp
 )
 add_library(ase::fileio ALIAS ${PROJECT_NAME})
 
@@ -75,3 +92,10 @@ install(TARGETS ${PROJECT_NAME}
 install(DIRECTORY include/
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
+
+#[[ Die Existenzpruefung ist notwendig, nicht vorsichtig: dieses Modul hat noch kein
+    tests/-Verzeichnis, und ein add_subdirectory auf ein fehlendes Verzeichnis bricht die
+    Konfiguration des GANZEN Baums. Sobald ein Test entsteht, greift der Zweig von selbst. ]]
+if(ASE_BUILD_TESTS AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests")
+    add_subdirectory(tests)
+endif()
