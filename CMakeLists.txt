@@ -10,9 +10,9 @@ ASE FOUNDATION BUILD CONFIGURATION
 
 @module      ase-fileio
 @layer       0 (Foundation)
-@created     2026-04-13
-@modified    2026-04-13
-@version     00.00.01.00001 [seed]
+@created     2026-04-15
+@modified    2026-09-08
+@version     00.00.04.00004 [seed]
 ]]
 
 # Parse local VERSION (SSOT) if not building from root
