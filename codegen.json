@@ -1,0 +1,14 @@
+{
+    "$schema": "https://ase.dev/schemas/codegen.json",
+    "version": "2.0.0",
+    "module": "ase-fileio",
+    "client_relevance": false,
+    "components": {
+        "shared": [],
+        "server_only": []
+    },
+    "systems": {
+        "shared": [],
+        "server_only": []
+    }
+}
