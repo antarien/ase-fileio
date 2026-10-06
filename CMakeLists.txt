@@ -5,13 +5,14 @@ ASE FOUNDATION BUILD CONFIGURATION
 
 @file        CMakeLists.txt
 @brief       Build configuration for ase-fileio
-@description Plain text file reading for non-ECS callers.
-             Header-only library wrapping std::ifstream behind ASE-native API.
+@description Plain text file reading and writing for non-ECS callers.
+             Header-only library on POSIX (open/read/write, opendir/readdir,
+             stat/mkdir/unlink/rename) behind an ASE-native API.
 
 @module      ase-fileio
 @layer       0 (Foundation)
 @created     2026-04-15
-@modified    2026-09-08
+@modified    2026-10-06
 @version     00.00.04.00004 [seed]
 ]]
 
@@ -61,6 +62,12 @@ add_library(${PROJECT_NAME} INTERFACE
         Baum (codegen 4, convert 3, log 1), ALLE acht Text mit Truncation — kein app, kein
         binary. Deshalb genau eine Funktion und keine Formauswahl. ]]
     include/ase/fileio/text_writer.hpp
+    #[[ Besitzerseite, 2026-10-06. Ein Rufer (tools/ase-cli, vault_write_cached_token):
+        der Vault-Admin-Token, den `/login` zuruecklaesst. Mit 0600 geboren und per rename
+        ganz ersetzt. Eigene Datei statt einer zweiten Funktion in text_writer.hpp: deren
+        Verbraucher (ase-log in jedem Tier, convert, codegen) uebersetzten sonst bei jeder
+        Aenderung an dieser Form mit. ]]
+    include/ase/fileio/private_writer.hpp
     #[[ Verzeichnisseite, 2026-08-22. Form von ihrem Verbraucher erhoben
         (core/ase-log, prune_log_dir): Name, Aenderungszeit und is_regular je Eintrag,
         flach, ohne Filter — und ein idempotentes remove_file. ]]
