@@ -14,6 +14,10 @@ ASE FOUNDATION BUILD CONFIGURATION
 @created     2026-04-15
 @modified    2026-10-06
 @version     00.00.04.00004 [seed]
+
+Copyright (c) Jan Ohlmann. All rights reserved.
+Licensed to ANTARES SIMULACAO LTDA. Use is governed by LICENSE.md and PJV.md in this repository.
+SPDX-License-Identifier: LicenseRef-ASE-LIC
 ]]
 
 # Parse local VERSION (SSOT) if not building from root
